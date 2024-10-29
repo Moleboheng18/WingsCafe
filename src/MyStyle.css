@@ -1,0 +1,159 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Dashboard styles */
+.dashboard {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff66b2, #a64ca6); /* Gradient from pink to purple */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    color: #fff; /* Text color for better readability on gradient */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.App-logo {
+    height: 50px;
+}
+
+/* Sign Out button */
+#signout, .signout-button {
+    padding: 8px 15px;
+    background-color: #ff5757;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#signout:hover, .signout-button:hover {
+    background-color: #e04848;
+}
+
+/* Navigation styles */
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+nav ul li {
+    margin-right: 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: #333;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+nav ul li a.active {
+    background-color: #00aaff;
+    color: white;
+}
+
+nav ul li a:hover {
+    background-color: #0088cc;
+    color: white;
+}
+
+/* Product and User Management table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #00aaff;
+    color: white;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: #00aaff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0088cc;
+}
+
+/* Edit and Delete button styles */
+button.edit-button, button.delete-button {
+    background-color: #00aaff;
+    margin-right: 5px;
+}
+
+button.edit-button:hover {
+    background-color: #0088cc;
+}
+
+button.delete-button {
+    background-color: #ff5757;
+}
+
+button.delete-button:hover {
+    background-color: #e04848;
+}
+
+/* Save button for inline editing */
+button.save-button {
+    background-color: #4caf50;
+}
+
+button.save-button:hover {
+    background-color: #45a049;
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+}
+
+form button {
+    align-self: flex-start;
+}
