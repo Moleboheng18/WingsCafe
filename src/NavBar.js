@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-function NavBar({ activeTab, setActiveTab }) {
+function NavBar() {
   return (
     <nav>
       <ul>
         <li>
-          <a href="#" className={activeTab === 'product' ? 'active' : ''} onClick={() => setActiveTab('product')}>Product Management</a>
+          <Link to="product" className="nav-link">Product Management</Link>
         </li>
         <li>
-          <a href="#" className={activeTab === 'user' ? 'active' : ''} onClick={() => setActiveTab('user')}>User Management</a>
+          <Link to="user" className="nav-link">User Management</Link>
         </li>
       </ul>
     </nav>

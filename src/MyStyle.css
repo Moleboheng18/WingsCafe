@@ -111,6 +111,11 @@ button {
 button:hover {
     background-color: #0088cc;
 }
+.me {
+    padding: auto;
+    margin: 0px;
+    
+  }
 
 /* Edit and Delete button styles */
 button.edit-button, button.delete-button {

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
+
 function UserManagement({ setCurrentUser }) {
   const [users, setUsers] = useState(() => JSON.parse(localStorage.getItem('users')) || []);
   const [editingIndex, setEditingIndex] = useState(null);
   const [editUsername, setEditUsername] = useState('');
   const [editPassword, setEditPassword] = useState('');
+  const [newUsername, setNewUsername] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
   useEffect(() => {
     localStorage.setItem('users', JSON.stringify(users));
@@ -28,6 +31,14 @@ function UserManagement({ setCurrentUser }) {
     setEditingIndex(null);
   };
 
+  const handleAddUser = () => {
+    if (newUsername && newPassword) {
+      setUsers([...users, { username: newUsername, password: newPassword }]);
+      setNewUsername('');
+      setNewPassword('');
+    }
+  };
+
   const handleSignOut = () => {
     setCurrentUser(null);
   };
@@ -36,6 +47,23 @@ function UserManagement({ setCurrentUser }) {
     <section>
       <h2>User Management</h2>
       <button onClick={handleSignOut}>Sign out</button>
+      {/* Add User Form */}
+      <div className='me'>
+        <h3>Add New User</h3>
+        <input
+          type="text"
+          placeholder="Username"
+          value={newUsername}
+          onChange={(e) => setNewUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        <button onClick={handleAddUser}>Add User</button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -63,6 +91,8 @@ function UserManagement({ setCurrentUser }) {
           ))}
         </tbody>
       </table>
+
+     
     </section>
   );
 }

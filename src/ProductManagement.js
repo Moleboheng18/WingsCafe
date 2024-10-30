@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
 
-function ProductManagement({ setCurrentUser }) {
+function ProductManagement({ setCurrentUser, productList, onAddProduct, onEditProduct, onDeleteProduct }) {
   const [productName, setProductName] = useState('');
   const [category, setCategory] = useState('');
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
-  const [productList, setProductList] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
 
-  const handleAddProduct = () => {
+  const handleAddOrUpdateProduct = () => {
     const newProduct = { productName, category, price, quantity };
+
     if (isEditing) {
-      const updatedProductList = productList.map((product, index) =>
-        index === editIndex ? newProduct : product
-      );
-      setProductList(updatedProductList);
+      onEditProduct(editIndex, newProduct);
       setIsEditing(false);
       setEditIndex(null);
     } else {
-      setProductList([...productList, newProduct]);
+      onAddProduct(newProduct);
     }
+
     setProductName('');
     setCategory('');
     setPrice('');
@@ -37,53 +35,18 @@ function ProductManagement({ setCurrentUser }) {
     setEditIndex(index);
   };
 
-  const handleDeleteProduct = (index) => {
-    const updatedProductList = productList.filter((_, i) => i !== index);
-    setProductList(updatedProductList);
-  };
-
-  const handleSignOut = () => {
-    setCurrentUser(null);
-  };
-
   return (
     <div className="product-management">
       <header>
         <h2>Product Management</h2>
-        <button id="signout" onClick={handleSignOut}>
-          Sign Out
-        </button>
+        <button id="signout" onClick={() => setCurrentUser(null)}>Sign Out</button>
       </header>
       <form onSubmit={(e) => e.preventDefault()}>
-        <input
-          type="text"
-          placeholder="Product Name"
-          value={productName}
-          onChange={(e) => setProductName(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          required
-        />
-        <button type="button" onClick={handleAddProduct}>
+        <input type="text" placeholder="Product Name" value={productName} onChange={(e) => setProductName(e.target.value)} required />
+        <input type="text" placeholder="Category" value={category} onChange={(e) => setCategory(e.target.value)} required />
+        <input type="number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} required />
+        <input type="number" placeholder="Quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} required />
+        <button type="button" onClick={handleAddOrUpdateProduct}>
           {isEditing ? 'Update Product' : 'Add Product'}
         </button>
       </form>
@@ -107,7 +70,7 @@ function ProductManagement({ setCurrentUser }) {
               <td>{product.quantity}</td>
               <td>
                 <button onClick={() => handleEditProduct(index)}>Edit</button>
-                <button onClick={() => handleDeleteProduct(index)}>Delete</button>
+                <button onClick={() => onDeleteProduct(index)}>Delete</button>
               </td>
             </tr>
           ))}
